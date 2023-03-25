@@ -1,11 +1,20 @@
 package controllers
 
 import (
-	"net/http"
+	"server/controllers/api"
+	"server/middleware"
 
-	"github.com/gorilla/mux"
+	"github.com/gin-gonic/gin"
 )
 
+func CollectRoute(r *gin.Engine) *gin.Engine {
+	r.POST("/api/auth/register", api.Register)
+	r.POST("/api/auth/login", api.Login)
+	r.GET("api/auth/info", middleware.AuthMiddleware(), api.Info)
+	return r
+}
+
+/*
 func Router() {
 	router := mux.NewRouter()
 	staticHandler := http.FileServer(http.Dir("./template"))
@@ -16,3 +25,4 @@ func Router() {
 	router.Handle("/find", staticHandler)
 	router.Handle("/my", staticHandler)
 }
+*/
