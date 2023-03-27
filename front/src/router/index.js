@@ -5,8 +5,6 @@ import FindBar from '../views/FindBar.vue'
 import MyBeer from '../views/MyBeer.vue'
 import BeerWiki from '../views/BeerWiki.vue'
 
-
-
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -35,6 +33,11 @@ const router = createRouter({
       name: 'wiki',
       component: BeerWiki
     },
+    {
+      path: '/login',
+      name: 'login',
+      component: () => import('../views/LoginPage.vue')
+    }
 
     // {
     //   path: '/about',

@@ -52,10 +52,7 @@ func Register(ctx *gin.Context) { // ctx:上下文
 	DB.Save(&newUser)
 
 	// 返回结果
-	ctx.JSON(200, gin.H{
-		"code": 200,
-		"msg":  "注册成功",
-	})
+	models.Success(ctx, nil, "注册成功")
 }
 
 func Login(ctx *gin.Context) {
@@ -66,11 +63,11 @@ func Login(ctx *gin.Context) {
 
 	// 数据验证
 	if len(telephone) != 11 {
-		ctx.JSON(http.StatusUnprocessableEntity, gin.H{"code": 422, "msg": "phone number should be 11 digits"})
+		models.Response(ctx, http.StatusUnprocessableEntity, 422, nil, "phone number should be 11 digits")
 		return
 	}
 	if len(password) < 6 {
-		ctx.JSON(http.StatusUnprocessableEntity, gin.H{"code": 422, "msg": "password should be at least 6 digits"})
+		models.Response(ctx, http.StatusUnprocessableEntity, 422, nil, "password should be at least 6 digits")
 		return
 	}
 
@@ -78,13 +75,13 @@ func Login(ctx *gin.Context) {
 	var user models.User
 	DB.Where("telephone = ?", telephone).First(&user)
 	if user.ID == 0 {
-		ctx.JSON(http.StatusUnprocessableEntity, gin.H{"code": 422, "msg": "this user does not exists"})
+		models.Response(ctx, http.StatusUnprocessableEntity, 422, nil, "this user does not exists")
 		return
 	}
 
 	// 判断密码是否正确
 	if err := bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(password)); err != nil {
-		ctx.JSON(http.StatusBadRequest, gin.H{"code": 400, "msg": "wrong password"})
+		models.Response(ctx, http.StatusUnprocessableEntity, 422, nil, "this user does not exists")
 		return
 	}
 
@@ -96,11 +93,7 @@ func Login(ctx *gin.Context) {
 		return
 	}
 	// 返回结果
-	ctx.JSON(200, gin.H{
-		"code": 200,
-		"data": gin.H{"token": token},
-		"msg":  "登录成功",
-	})
+	models.Success(ctx, gin.H{"token": token}, "登陆成功")
 }
 
 func Info(ctx *gin.Context) {

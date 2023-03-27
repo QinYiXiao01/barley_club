@@ -1,10 +1,32 @@
 <template>
   <div class="nav-header">
-    <div class="content">
+      <el-menu
+    :default-active="activeIndex"
+    class="el-menu"
+    mode="horizontal"
+    :ellipsis="false"
+    @select="handleSelect"
+    background-color="#fd780f"
+    text-color="#fff"
+    active-text-color="#ffd04b"
+  >
+    <el-menu-item index="0">
       <div class="logo-box">
         <img class="logo" src="../assets/img/logo-no-background.png" alt="">
       </div>
-      <el-menu
+    </el-menu-item>
+    <div class="flex-grow" />
+    <el-menu-item index="1" @click="$router.replace('/diary')">啤酒日记</el-menu-item>
+    <el-menu-item index="2" @click="$router.replace('/find')">喝一杯</el-menu-item>
+    <el-menu-item index="3" @click="$router.replace('/my')">喝过的</el-menu-item>
+    <el-menu-item index="4" @click="$router.replace('/wiki')">能喝啥</el-menu-item>
+    <el-sub-menu index="5">
+      <template #title>登录/注册</template>
+      <el-menu-item index="5-1" @click="$router.replace('/login')">登录</el-menu-item>
+      <el-menu-item index="5-2" @click="$router.replace('/login')">注册</el-menu-item>
+    </el-sub-menu>
+  </el-menu>
+      <!-- <el-menu
       :default-active="activeIndex2"
       class="el-menu"
       mode="horizontal"
@@ -13,6 +35,11 @@
       active-text-color="#ffd04b"
       @select="handleSelect"
     >
+    <el-menu-item>
+      <div class="logo-box">
+        <img class="logo" src="../assets/img/logo-no-background.png" alt="">
+      </div>
+    </el-menu-item>
       <router-link to="diary">
         <el-menu-item index="1">
             啤酒日记
@@ -33,9 +60,9 @@
         <el-menu-item index="4">有什么</el-menu-item>
       </router-link>
       </el-menu>
-      <div class="user-info">
-        <el-dropdown>
-    <span class="el-dropdown-link">
+      <div class="user-info"> -->
+        <!-- <el-dropdown>
+         <span class="el-dropdown-link">
       登录 / 注册
       <el-icon class="el-icon--right">
         <arrow-down />
@@ -51,9 +78,8 @@
       </el-dropdown-menu>
     </template>
   </el-dropdown>
-      </div>
+      </div> -->
     </div>
-  </div>
 </template>
 
 <script>
@@ -81,27 +107,14 @@ export default defineComponent({
   flex: 1;
 }
 .logo {
-  width: 80px;
-  margin: 20px 20px;
+  width: 100px;
 }
-
-.el-menu {
-  flex: 1;
-}
-
 .el-menu >>> .el-menu-item {
-  font-size: large;
-  font-weight: 700;
-  padding: 40px 20px;
-  margin: 0 10px;
+
 }
 
-a {
-  text-decoration: none;
-}
-
-.router-link-active {
-  text-decoration: none;
+.flex-grow {
+  flex-grow: 1;
 }
 
 .el-dropdown-link {

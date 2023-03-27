@@ -16,19 +16,17 @@
 
 <script>
 import { defineComponent } from "vue"
-import MainContent from "../components/MainContent.vue"
+// import MainContent from "../components/MainContent.vue"
 import NavHeader from "../components/NavHeader.vue"
 
 export default defineComponent({
     components: {
-        NavHeader,
-        MainContent
+        NavHeader
     },
 
     setup() {
         return{
-            NavHeader,
-            MainContent
+            NavHeader
         }
     }
 })
