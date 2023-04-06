@@ -2,7 +2,6 @@
   <div class="nav-header">
       <el-menu
     :default-active="activeIndex"
-    class="el-menu"
     mode="horizontal"
     :ellipsis="false"
     @select="handleSelect"

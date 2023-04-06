@@ -1,0 +1,14 @@
+// $--color-primary: #fb7b0d;
+
+// $--colors: (
+//     "primary": $--color-primary,
+// );
+
+// @forward "element-plus/theme-chalk/src/common/var.scss" with ($colors: $--colors);
+
+// @use "element-plus/theme-chalk/src/index.scss" as *;
+
+@forward 'element-plus/theme-chalk/src/common/var.scss' with ($colors: ('primary': ('base': #fb7b0d,
+        ),
+    ),
+);
